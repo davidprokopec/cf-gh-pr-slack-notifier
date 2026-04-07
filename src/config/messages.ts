@@ -1,0 +1,3 @@
+export const PR_DESCRIPTION_MAX_LENGTH = 3000;
+export const REVIEW_BODY_MAX_LENGTH = 2000;
+export const COMMENT_BODY_MAX_LENGTH = 2000;

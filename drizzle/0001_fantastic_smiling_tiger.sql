@@ -1,0 +1,1 @@
+ALTER TABLE `pr_messages` ADD `is_draft` integer DEFAULT false NOT NULL;

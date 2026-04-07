@@ -1,0 +1,32 @@
+{
+  "name": "github-slack-notifier",
+  "module": "index.ts",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "dev": "npx sst dev",
+    "deploy": "npx sst deploy --stage production",
+    "deploy:dev": "npx sst deploy --stage dev",
+    "remove": "npx sst remove",
+    "test": "bun test",
+    "typecheck": "bunx tsc --noEmit",
+    "db:generate": "bunx drizzle-kit generate",
+    "db:studio": "bunx drizzle-kit studio",
+    "secret:set": "npx sst secret set",
+    "secret:list": "npx sst secret list"
+  },
+  "dependencies": {
+    "drizzle-orm": "^0.45.1",
+    "hono": "^4.0.0"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20240620.0",
+    "@types/bun": "latest",
+    "bun-types": "latest",
+    "drizzle-kit": "^0.31.10",
+    "sst": "^3.0.0"
+  },
+  "peerDependencies": {
+    "typescript": "^5"
+  }
+}
