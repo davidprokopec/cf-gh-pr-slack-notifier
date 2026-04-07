@@ -1,0 +1,40 @@
+name: Deploy to Cloudflare Workers
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+concurrency:
+  group: deploy-production
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v2
+
+      - name: Install dependencies
+        run: bun install --frozen-lockfile
+
+      - name: Pulumi workaround
+        run: sudo rm -f /usr/local/bin/pulumi-language-nodejs
+
+      - name: Set SST secrets
+        run: |
+          bun sst secret set SLACK_BOT_TOKEN "${{ secrets.SLACK_BOT_TOKEN }}" --stage production
+          bun sst secret set GITHUB_WEBHOOK_SECRET "${{ secrets.GITHUB_WEBHOOK_SECRET }}" --stage production
+          bun sst secret set CONFIG_API_KEY "${{ secrets.CONFIG_API_KEY }}" --stage production
+
+      - name: Deploy to Cloudflare Workers
+        run: bun sst deploy --stage production
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_DEFAULT_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_DEFAULT_ACCOUNT_ID }}
+          CUSTOM_DOMAIN: ${{ vars.CUSTOM_DOMAIN }}
