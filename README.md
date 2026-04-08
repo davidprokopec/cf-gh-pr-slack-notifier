@@ -47,15 +47,13 @@ View review
 
 ## Deploy Your Own
 
-> **⚠️ Requires Cloudflare Workers Paid plan ($5/mo)** — Durable Objects (used for persistent PR state) are not available on the free tier. [See pricing](https://developers.cloudflare.com/workers/platform/pricing/).
-
 Get your own instance running in minutes using GitHub's template feature and automated deployments.
 
 ### Step 1: Create your repository
 
 Click the button below to create your own copy of this repository:
 
-[![Use this template](https://img.shields.io/badge/Use%20this%20template-2ea44f?style=for-the-badge&logo=github)](https://github.com/new?template_name=github-slack-notifier&template_owner=YOUR_USERNAME)
+[![Use this template](https://img.shields.io/badge/Use%20this%20template-2ea44f?style=for-the-badge&logo=github)](https://github.com/new?template_name=cf-gh-pr-slack-notifier&template_owner=davidprokopec)
 
 Or go to this repo's main page and click **"Use this template"** → **"Create a new repository"**. This gives you a clean repo with no commit history that you own.
 
