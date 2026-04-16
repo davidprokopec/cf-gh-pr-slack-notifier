@@ -71,15 +71,21 @@ Or go to this repo's main page and click **"Use this template"** → **"Create a
 
 ### Step 3: Set GitHub Secrets
 
-In your new repository, go to **Settings > Secrets and variables > Actions > Secrets** and add:
+In your new repository:
 
-| Secret | Description |
+1. Go to **Settings** → **Secrets and variables** → **Actions**
+2. Under **Repository secrets**, click **"New repository secret"**
+3. Add each of the following secrets (one at a time — enter the **Name**, paste the **Value**, and click **"Add secret"**):
+
+| Name | Value |
 |---|---|
-| `CLOUDFLARE_API_TOKEN` | The API token from Step 2 |
-| `CLOUDFLARE_DEFAULT_ACCOUNT_ID` | Your Cloudflare Account ID (found in your dashboard URL or [API overview](https://dash.cloudflare.com/profile/api-tokens)) |
-| `SLACK_BOT_TOKEN` | Slack Bot OAuth Token (`xoxb-...`). See [Create a Slack app](#2-create-a-slack-app) below |
-| `GITHUB_WEBHOOK_SECRET` | Random string for webhook verification. Generate with `openssl rand -hex 32` |
-| `CONFIG_API_KEY` | API key for runtime config endpoints. Generate with `openssl rand -hex 32` |
+| `CLOUDFLARE_API_TOKEN` | The API token you created in Step 2 |
+| `CLOUDFLARE_DEFAULT_ACCOUNT_ID` | Your Cloudflare Account ID — find it in your [Cloudflare dashboard](https://dash.cloudflare.com) URL (`https://dash.cloudflare.com/<account-id>`) or on the **Workers & Pages** overview page |
+| `SLACK_BOT_TOKEN` | Slack Bot OAuth Token (`xoxb-...`) — you'll get this in [Step 6](#step-6-post-deploy-setup) after creating a Slack app |
+| `GH_WEBHOOK_SECRET` | A random string for webhook verification. Generate one with: `openssl rand -hex 32` |
+| `CONFIG_API_KEY` | API key for runtime config endpoints. Generate one with: `openssl rand -hex 32` |
+
+You should have 5 repository secrets when done.
 
 ### Step 4: Set custom domain (optional)
 
@@ -199,7 +205,7 @@ SST will output the worker URL. Note it for the next step.
 1. Go to your GitHub repo (or org) **Settings > Webhooks > Add webhook**
 2. Set the **Payload URL** to `https://your-worker-url/github-pr-webhook`
 3. Set **Content type** to `application/json`
-4. Set the **Secret** to the same value you used for `GITHUB_WEBHOOK_SECRET`
+4. Set the **Secret** to the same value you used for `GH_WEBHOOK_SECRET`
 5. Under **Which events?**, select **Let me select individual events** and check:
    - Pull requests
    - Pull request reviews

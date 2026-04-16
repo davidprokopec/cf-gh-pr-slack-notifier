@@ -29,7 +29,7 @@ jobs:
       - name: Set SST secrets
         run: |
           bun sst secret set SLACK_BOT_TOKEN "${{ secrets.SLACK_BOT_TOKEN }}" --stage production
-          bun sst secret set GITHUB_WEBHOOK_SECRET "${{ secrets.GITHUB_WEBHOOK_SECRET }}" --stage production
+          bun sst secret set GITHUB_WEBHOOK_SECRET "${{ secrets.GH_WEBHOOK_SECRET }}" --stage production
           bun sst secret set CONFIG_API_KEY "${{ secrets.CONFIG_API_KEY }}" --stage production
 
       - name: Deploy to Cloudflare Workers
